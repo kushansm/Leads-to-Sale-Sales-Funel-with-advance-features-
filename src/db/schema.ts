@@ -1,29 +1,29 @@
-import { pgTable, text, timestamp, boolean } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, boolean, uuid } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
-	id: text("id").primaryKey(),
+	id: uuid("id").defaultRandom().primaryKey(),
 	name: text("name").notNull(),
 	email: text("email").notNull().unique(),
 	emailVerified: boolean("emailVerified").notNull(),
 	image: text("image"),
-	createdAt: timestamp("createdAt").notNull(),
-	updatedAt: timestamp("updatedAt").notNull(),
+	createdAt: timestamp("created_at").defaultNow().notNull(),
+	updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
 export const session = pgTable("session", {
-	id: text("id").primaryKey(),
+	id: uuid("id").defaultRandom().primaryKey(),
 	expiresAt: timestamp("expiresAt").notNull(),
 	ipAddress: text("ipAddress"),
 	userAgent: text("userAgent"),
-	userId: text("userId").notNull().references(() => user.id),
-	activeOrganizationId: text("activeOrganizationId"),
+	userId: uuid("userId").notNull().references(() => user.id),
+	activeOrganizationId: uuid("activeOrganizationId"),
 });
 
 export const account = pgTable("account", {
-	id: text("id").primaryKey(),
+	id: uuid("id").defaultRandom().primaryKey(),
 	accountId: text("accountId").notNull(),
 	providerId: text("providerId").notNull(),
-	userId: text("userId").notNull().references(() => user.id),
+	userId: uuid("userId").notNull().references(() => user.id),
 	accessToken: text("accessToken"),
 	refreshToken: text("refreshToken"),
 	idToken: text("idToken"),
@@ -32,36 +32,46 @@ export const account = pgTable("account", {
 });
 
 export const verification = pgTable("verification", {
-	id: text("id").primaryKey(),
+	id: uuid("id").defaultRandom().primaryKey(),
 	identifier: text("identifier").notNull(),
 	value: text("value").notNull(),
 	expiresAt: timestamp("expiresAt").notNull(),
 });
 
 export const organization = pgTable("organization", {
-	id: text("id").primaryKey(),
+	id: uuid("id").defaultRandom().primaryKey(),
 	name: text("name").notNull(),
 	slug: text("slug").unique(),
 	logo: text("logo"),
-	createdAt: timestamp("createdAt").notNull(),
+	createdAt: timestamp("created_at").defaultNow().notNull(),
+	updatedAt: timestamp("updated_at").defaultNow().notNull(),
 	metadata: text("metadata"),
 });
 
+export const role = pgTable("role", {
+	id: uuid("id").defaultRandom().primaryKey(),
+	name: text("name").notNull().unique(), // e.g., 'Owner', 'Admin', 'Salesperson'
+	description: text("description"),
+	createdAt: timestamp("created_at").defaultNow().notNull(),
+	updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 export const member = pgTable("member", {
-	id: text("id").primaryKey(),
-	organizationId: text("organizationId").notNull().references(() => organization.id),
-	userId: text("userId").notNull().references(() => user.id),
+	id: uuid("id").defaultRandom().primaryKey(),
+	organizationId: uuid("organizationId").notNull().references(() => organization.id),
+	userId: uuid("userId").notNull().references(() => user.id),
 	email: text("email").notNull(),
-	role: text("role").notNull(), // 'owner', 'admin', 'member', 'salesperson'
-	createdAt: timestamp("createdAt").notNull(),
+	role: text("role").notNull(), // Better Auth internal string role ('owner', 'admin', 'member')
+	crmRoleId: uuid("crm_role_id").references(() => role.id), // Our custom CRM role mapping
+	createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
 export const invitation = pgTable("invitation", {
-	id: text("id").primaryKey(),
-	organizationId: text("organizationId").notNull().references(() => organization.id),
+	id: uuid("id").defaultRandom().primaryKey(),
+	organizationId: uuid("organizationId").notNull().references(() => organization.id),
 	email: text("email").notNull(),
 	role: text("role"),
 	status: text("status").notNull(),
 	expiresAt: timestamp("expiresAt").notNull(),
-	inviterId: text("inviterId").notNull().references(() => user.id),
+	inviterId: uuid("inviterId").notNull().references(() => user.id),
 });

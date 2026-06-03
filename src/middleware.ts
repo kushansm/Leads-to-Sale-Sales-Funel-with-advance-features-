@@ -1,31 +1,48 @@
-import { betterFetch } from "@better-fetch/fetch";
-import type { Session } from "better-auth/types";
 import { NextResponse, type NextRequest } from "next/server";
 
+type Session = {
+  session: {
+    id: string;
+    userId: string;
+    expiresAt: string;
+  };
+  user: {
+    id: string;
+    email: string;
+    name: string;
+  };
+} | null;
+
+const AUTH_ROUTES = ["/login", "/register", "/forgot-password", "/reset-password"];
+
 export async function middleware(request: NextRequest) {
-    const { data: session } = await betterFetch<Session>(
-        "/api/auth/get-session",
-        {
-            baseURL: request.nextUrl.origin,
-            headers: {
-                cookie: request.headers.get("cookie") || "",
+    let session: Session = null;
+
+    try {
+        const response = await fetch(
+            new URL("/api/auth/get-session", request.nextUrl.origin),
+            {
+                headers: {
+                    cookie: request.headers.get("cookie") || "",
+                },
             },
-        },
+        );
+        if (response.ok) {
+            session = await response.json();
+        }
+    } catch {
+        // If the session fetch fails, treat as unauthenticated
+    }
+
+    const isAuthRoute = AUTH_ROUTES.some((route) =>
+        request.nextUrl.pathname.startsWith(route)
     );
 
-    const isAuthRoute = request.nextUrl.pathname.startsWith('/login') || 
-                        request.nextUrl.pathname.startsWith('/register') || 
-                        request.nextUrl.pathname.startsWith('/forgot-password') || 
-                        request.nextUrl.pathname.startsWith('/reset-password');
-
     if (!session && !isAuthRoute) {
-        // If they are not logged in and not on an auth route, redirect to login
         return NextResponse.redirect(new URL("/login", request.url));
     }
 
     if (session && isAuthRoute) {
-        // If they are logged in and trying to access an auth route, redirect to dashboard (fallback to root if no org known here)
-        // Ideally we'd know their active org, but we'll handle that on the client or in a layout.
         return NextResponse.redirect(new URL("/", request.url));
     }
 
