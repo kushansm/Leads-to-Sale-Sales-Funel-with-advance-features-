@@ -1,0 +1,155 @@
+
+> app-temp@0.1.0 build
+> next build
+
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/kushan/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/kushan/Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/package-lock.json
+
+▲ Next.js 16.2.7 (Turbopack)
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 6 errors:
+./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/@better-auth/kysely-adapter/dist/bun-sqlite-dialect-DzNwOpKv.mjs:1:1
+Export DEFAULT_MIGRATION_LOCK_TABLE doesn't exist in target module
+[31m[1m>[0m [90m1 |[0m ...[33mFAULT_MIGRATION_LOCK_TABLE[0m, [33mDEFAULT_MIGRATION_TABLE[0m, [33mDefaultQueryCom...[0m
+  [90m  |[0m    [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2 |[0m ...[90mialect.ts[0m
+  [90m3 |[0m ...[36mss[0m {
+  [90m4 |[0m ...ists() {
+
+The export DEFAULT_MIGRATION_LOCK_TABLE was not found in module [project]/Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/kysely/dist/index.js [app-route] (ecmascript).
+Did you mean to import ON_MODIFY_FOREIGN_ACTIONS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  App Route:
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/@better-auth/kysely-adapter/dist/bun-sqlite-dialect-DzNwOpKv.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/@better-auth/kysely-adapter/dist/index.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/better-auth/dist/context/init.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/better-auth/dist/auth/full.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/src/lib/auth.ts
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/src/app/api/auth/[...all]/route.ts
+
+
+./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/@better-auth/kysely-adapter/dist/d1-sqlite-dialect-C2B7YsIT.mjs:1:1
+Export DEFAULT_MIGRATION_LOCK_TABLE doesn't exist in target module
+[31m[1m>[0m [90m1 |[0m ...[33mION_LOCK_TABLE[0m, [33mDEFAULT_MIGRATION_TABLE[0m, [33mSqliteAdapter[0m, [33mSqliteQueryC...[0m
+  [90m  |[0m    [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2 |[0m ...[90m-dialect.ts[0m
+  [90m3 |[0m ...[36mlass[0m [36mextends[0m [33mSqliteAdapter[0m {};
+  [90m4 |[0m ...[36mass[0m {
+
+The export DEFAULT_MIGRATION_LOCK_TABLE was not found in module [project]/Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/kysely/dist/index.js [app-route] (ecmascript).
+Did you mean to import ON_MODIFY_FOREIGN_ACTIONS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  App Route:
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/@better-auth/kysely-adapter/dist/d1-sqlite-dialect-C2B7YsIT.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/@better-auth/kysely-adapter/dist/index.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/better-auth/dist/context/init.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/better-auth/dist/auth/full.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/src/lib/auth.ts
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/src/app/api/auth/[...all]/route.ts
+
+
+./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/@better-auth/kysely-adapter/dist/node-sqlite-dialect.mjs:1:1
+Export DEFAULT_MIGRATION_LOCK_TABLE doesn't exist in target module
+[31m[1m>[0m [90m1 |[0m ...[33mFAULT_MIGRATION_LOCK_TABLE[0m, [33mDEFAULT_MIGRATION_TABLE[0m, [33mDefaultQueryCom...[0m
+  [90m  |[0m    [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2 |[0m ...[90mdialect.ts[0m
+  [90m3 |[0m ...[36mass[0m {
+  [90m4 |[0m ...ists() {
+
+The export DEFAULT_MIGRATION_LOCK_TABLE was not found in module [project]/Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/kysely/dist/index.js [app-route] (ecmascript).
+Did you mean to import ON_MODIFY_FOREIGN_ACTIONS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  App Route:
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/@better-auth/kysely-adapter/dist/node-sqlite-dialect.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/@better-auth/kysely-adapter/dist/index.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/better-auth/dist/context/init.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/better-auth/dist/auth/full.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/src/lib/auth.ts
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/src/app/api/auth/[...all]/route.ts
+
+
+./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/@better-auth/kysely-adapter/dist/bun-sqlite-dialect-DzNwOpKv.mjs:1:1
+Export DEFAULT_MIGRATION_TABLE doesn't exist in target module
+[31m[1m>[0m [90m1 |[0m ...[33mFAULT_MIGRATION_LOCK_TABLE[0m, [33mDEFAULT_MIGRATION_TABLE[0m, [33mDefaultQueryCom...[0m
+  [90m  |[0m    [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2 |[0m ...[90mialect.ts[0m
+  [90m3 |[0m ...[36mss[0m {
+  [90m4 |[0m ...ists() {
+
+The export DEFAULT_MIGRATION_TABLE was not found in module [project]/Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/kysely/dist/index.js [app-route] (ecmascript).
+Did you mean to import TRANSACTION_ISOLATION_LEVELS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  App Route:
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/@better-auth/kysely-adapter/dist/bun-sqlite-dialect-DzNwOpKv.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/@better-auth/kysely-adapter/dist/index.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/better-auth/dist/context/init.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/better-auth/dist/auth/full.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/src/lib/auth.ts
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/src/app/api/auth/[...all]/route.ts
+
+
+./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/@better-auth/kysely-adapter/dist/d1-sqlite-dialect-C2B7YsIT.mjs:1:1
+Export DEFAULT_MIGRATION_TABLE doesn't exist in target module
+[31m[1m>[0m [90m1 |[0m ...[33mION_LOCK_TABLE[0m, [33mDEFAULT_MIGRATION_TABLE[0m, [33mSqliteAdapter[0m, [33mSqliteQueryC...[0m
+  [90m  |[0m    [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2 |[0m ...[90m-dialect.ts[0m
+  [90m3 |[0m ...[36mlass[0m [36mextends[0m [33mSqliteAdapter[0m {};
+  [90m4 |[0m ...[36mass[0m {
+
+The export DEFAULT_MIGRATION_TABLE was not found in module [project]/Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/kysely/dist/index.js [app-route] (ecmascript).
+Did you mean to import TRANSACTION_ISOLATION_LEVELS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  App Route:
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/@better-auth/kysely-adapter/dist/d1-sqlite-dialect-C2B7YsIT.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/@better-auth/kysely-adapter/dist/index.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/better-auth/dist/context/init.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/better-auth/dist/auth/full.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/src/lib/auth.ts
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/src/app/api/auth/[...all]/route.ts
+
+
+./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/@better-auth/kysely-adapter/dist/node-sqlite-dialect.mjs:1:1
+Export DEFAULT_MIGRATION_TABLE doesn't exist in target module
+[31m[1m>[0m [90m1 |[0m ...[33mFAULT_MIGRATION_LOCK_TABLE[0m, [33mDEFAULT_MIGRATION_TABLE[0m, [33mDefaultQueryCom...[0m
+  [90m  |[0m    [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2 |[0m ...[90mdialect.ts[0m
+  [90m3 |[0m ...[36mass[0m {
+  [90m4 |[0m ...ists() {
+
+The export DEFAULT_MIGRATION_TABLE was not found in module [project]/Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/kysely/dist/index.js [app-route] (ecmascript).
+Did you mean to import TRANSACTION_ISOLATION_LEVELS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  App Route:
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/@better-auth/kysely-adapter/dist/node-sqlite-dialect.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/@better-auth/kysely-adapter/dist/index.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/better-auth/dist/context/init.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/better-auth/dist/auth/full.mjs
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/src/lib/auth.ts
+    ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/src/app/api/auth/[...all]/route.ts
+
+
+    at ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/ (better-auth/kysely-adapter/dist/bun-sqlite-dialect-DzNwOpKv.mjs:1:1)
+    at ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/ (better-auth/kysely-adapter/dist/d1-sqlite-dialect-C2B7YsIT.mjs:1:1)
+    at ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/ (better-auth/kysely-adapter/dist/node-sqlite-dialect.mjs:1:1)
+    at ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/ (better-auth/kysely-adapter/dist/bun-sqlite-dialect-DzNwOpKv.mjs:1:1)
+    at ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/ (better-auth/kysely-adapter/dist/d1-sqlite-dialect-C2B7YsIT.mjs:1:1)
+    at ./Documents/Projects/my-projects/Leads-to-Sale-Sales-Funel-with-advance-features-/node_modules/ (better-auth/kysely-adapter/dist/node-sqlite-dialect.mjs:1:1)
