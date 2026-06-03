@@ -1,4 +1,5 @@
 import { UserMenu } from "@/components/shared/user-menu";
+import Link from "next/link";
 
 export default async function AppLayout({
   children,
@@ -17,18 +18,18 @@ export default async function AppLayout({
             <span className="font-semibold">CRM</span>
           </div>
           <nav className="grid items-start px-2 text-sm font-medium lg:px-4 py-2 gap-1">
-            <span className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary">
+            <Link href={`/${orgId}`} className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:bg-muted hover:text-primary">
               Dashboard
-            </span>
-            <span className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary">
+            </Link>
+            <Link href={`/${orgId}/leads`} className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:bg-muted hover:text-primary">
               Leads
-            </span>
-            <span className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary">
+            </Link>
+            <Link href={`/${orgId}/contacts`} className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:bg-muted hover:text-primary">
               Contacts
-            </span>
-            <span className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary">
+            </Link>
+            <Link href={`/${orgId}/settings`} className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:bg-muted hover:text-primary">
               Settings
-            </span>
+            </Link>
           </nav>
         </div>
       </aside>
