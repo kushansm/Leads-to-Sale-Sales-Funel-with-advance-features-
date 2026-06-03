@@ -1,3 +1,5 @@
+import { UserMenu } from "@/components/shared/user-menu";
+
 export default function AppLayout({
   children,
   params,
@@ -28,8 +30,13 @@ export default function AppLayout({
           </nav>
         </div>
       </aside>
-      <main className="flex-1 flex flex-col gap-4 p-4 lg:gap-6 lg:p-6">
-        {children}
+      <main className="flex-1 flex flex-col h-screen">
+        <header className="flex h-14 items-center justify-end border-b px-4 lg:h-[60px] lg:px-6">
+          <UserMenu />
+        </header>
+        <div className="flex-1 p-4 lg:p-6 overflow-auto">
+          {children}
+        </div>
       </main>
     </div>
   );
