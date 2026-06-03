@@ -323,7 +323,7 @@ export function LeadsDataTable({ leads, organizationId }: Props) {
                 <TableCell colSpan={columns.length} className="text-center py-16 text-muted-foreground">
                   {globalFilter || statusFilter !== "all" || tempFilter !== "all"
                     ? "No leads match your filters."
-                    : "No leads yet. Click "Add Lead" to create your first one."}
+                    : "No leads yet. Click “Add Lead” to create your first one."}
                 </TableCell>
               </TableRow>
             )}

@@ -24,8 +24,9 @@ export const leadTemperatureEnum = pgEnum("lead_temperature", [
 
 export const leadSource = pgTable("lead_source", {
 	id: uuid("id").defaultRandom().primaryKey(),
-	organizationId: uuid("organization_id").notNull().references(() => organization.id, { onDelete: "cascade" }),
-	name: text("name").notNull(),       // e.g. 'Website', 'Referral', 'Cold Call'
+	// organizationId is a text FK because Better Auth generates text IDs for organizations
+	organizationId: text("organization_id").notNull().references(() => organization.id, { onDelete: "cascade" }),
+	name: text("name").notNull(),
 	description: text("description"),
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 	updatedAt: timestamp("updated_at").defaultNow().notNull(),
@@ -35,7 +36,7 @@ export const leadSource = pgTable("lead_source", {
 
 export const lead = pgTable("lead", {
 	id: uuid("id").defaultRandom().primaryKey(),
-	organizationId: uuid("organization_id").notNull().references(() => organization.id, { onDelete: "cascade" }),
+	organizationId: text("organization_id").notNull().references(() => organization.id, { onDelete: "cascade" }),
 
 	// Contact info
 	name: text("name").notNull(),
@@ -49,8 +50,8 @@ export const lead = pgTable("lead", {
 	status: leadStatusEnum("status").default("new").notNull(),
 	temperature: leadTemperatureEnum("temperature").default("warm").notNull(),
 
-	// Assignment
-	assignedTo: uuid("assigned_to").references(() => user.id, { onDelete: "set null" }),
+	// Assignment — text FK because user IDs are Better Auth strings
+	assignedTo: text("assigned_to").references(() => user.id, { onDelete: "set null" }),
 
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 	updatedAt: timestamp("updated_at").defaultNow().notNull(),
@@ -60,9 +61,9 @@ export const lead = pgTable("lead", {
 
 export const tag = pgTable("tag", {
 	id: uuid("id").defaultRandom().primaryKey(),
-	organizationId: uuid("organization_id").notNull().references(() => organization.id, { onDelete: "cascade" }),
+	organizationId: text("organization_id").notNull().references(() => organization.id, { onDelete: "cascade" }),
 	name: text("name").notNull(),
-	color: text("color").default("#6366f1"), // hex color for UI badges
+	color: text("color").default("#6366f1"),
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 	updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
@@ -80,7 +81,8 @@ export const leadTag = pgTable("lead_tag", {
 export const leadNote = pgTable("lead_note", {
 	id: uuid("id").defaultRandom().primaryKey(),
 	leadId: uuid("lead_id").notNull().references(() => lead.id, { onDelete: "cascade" }),
-	authorId: uuid("author_id").notNull().references(() => user.id, { onDelete: "cascade" }),
+	// authorId is a text FK because user IDs are Better Auth strings
+	authorId: text("author_id").notNull().references(() => user.id, { onDelete: "cascade" }),
 	content: text("content").notNull(),
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 	updatedAt: timestamp("updated_at").defaultNow().notNull(),

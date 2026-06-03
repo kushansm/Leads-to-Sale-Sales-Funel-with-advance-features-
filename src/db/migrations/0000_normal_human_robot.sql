@@ -1,10 +1,10 @@
 CREATE TYPE "public"."lead_status" AS ENUM('new', 'contacted', 'qualified', 'proposal', 'negotiation', 'won', 'lost', 'unqualified');--> statement-breakpoint
 CREATE TYPE "public"."lead_temperature" AS ENUM('hot', 'warm', 'cold');--> statement-breakpoint
 CREATE TABLE "account" (
-	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"id" text PRIMARY KEY NOT NULL,
 	"accountId" text NOT NULL,
 	"providerId" text NOT NULL,
-	"userId" uuid NOT NULL,
+	"userId" text NOT NULL,
 	"accessToken" text,
 	"refreshToken" text,
 	"idToken" text,
@@ -13,19 +13,19 @@ CREATE TABLE "account" (
 );
 --> statement-breakpoint
 CREATE TABLE "invitation" (
-	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
-	"organizationId" uuid NOT NULL,
+	"id" text PRIMARY KEY NOT NULL,
+	"organizationId" text NOT NULL,
 	"email" text NOT NULL,
 	"role" text,
 	"status" text NOT NULL,
 	"expiresAt" timestamp NOT NULL,
-	"inviterId" uuid NOT NULL
+	"inviterId" text NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "member" (
-	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
-	"organizationId" uuid NOT NULL,
-	"userId" uuid NOT NULL,
+	"id" text PRIMARY KEY NOT NULL,
+	"organizationId" text NOT NULL,
+	"userId" text NOT NULL,
 	"email" text NOT NULL,
 	"role" text NOT NULL,
 	"crm_role_id" uuid,
@@ -33,7 +33,7 @@ CREATE TABLE "member" (
 );
 --> statement-breakpoint
 CREATE TABLE "organization" (
-	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"id" text PRIMARY KEY NOT NULL,
 	"name" text NOT NULL,
 	"slug" text,
 	"logo" text,
@@ -53,16 +53,16 @@ CREATE TABLE "role" (
 );
 --> statement-breakpoint
 CREATE TABLE "session" (
-	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"id" text PRIMARY KEY NOT NULL,
 	"expiresAt" timestamp NOT NULL,
 	"ipAddress" text,
 	"userAgent" text,
-	"userId" uuid NOT NULL,
-	"activeOrganizationId" uuid
+	"userId" text NOT NULL,
+	"activeOrganizationId" text
 );
 --> statement-breakpoint
 CREATE TABLE "user" (
-	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"id" text PRIMARY KEY NOT NULL,
 	"name" text NOT NULL,
 	"email" text NOT NULL,
 	"emailVerified" boolean NOT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE "user" (
 );
 --> statement-breakpoint
 CREATE TABLE "verification" (
-	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"id" text PRIMARY KEY NOT NULL,
 	"identifier" text NOT NULL,
 	"value" text NOT NULL,
 	"expiresAt" timestamp NOT NULL
@@ -81,7 +81,7 @@ CREATE TABLE "verification" (
 --> statement-breakpoint
 CREATE TABLE "lead" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
-	"organization_id" uuid NOT NULL,
+	"organization_id" text NOT NULL,
 	"name" text NOT NULL,
 	"phone" text,
 	"email" text,
@@ -90,7 +90,7 @@ CREATE TABLE "lead" (
 	"source_id" uuid,
 	"status" "lead_status" DEFAULT 'new' NOT NULL,
 	"temperature" "lead_temperature" DEFAULT 'warm' NOT NULL,
-	"assigned_to" uuid,
+	"assigned_to" text,
 	"created_at" timestamp DEFAULT now() NOT NULL,
 	"updated_at" timestamp DEFAULT now() NOT NULL
 );
@@ -98,7 +98,7 @@ CREATE TABLE "lead" (
 CREATE TABLE "lead_note" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"lead_id" uuid NOT NULL,
-	"author_id" uuid NOT NULL,
+	"author_id" text NOT NULL,
 	"content" text NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL,
 	"updated_at" timestamp DEFAULT now() NOT NULL
@@ -106,7 +106,7 @@ CREATE TABLE "lead_note" (
 --> statement-breakpoint
 CREATE TABLE "lead_source" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
-	"organization_id" uuid NOT NULL,
+	"organization_id" text NOT NULL,
 	"name" text NOT NULL,
 	"description" text,
 	"created_at" timestamp DEFAULT now() NOT NULL,
@@ -122,7 +122,7 @@ CREATE TABLE "lead_tag" (
 --> statement-breakpoint
 CREATE TABLE "tag" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
-	"organization_id" uuid NOT NULL,
+	"organization_id" text NOT NULL,
 	"name" text NOT NULL,
 	"color" text DEFAULT '#6366f1',
 	"created_at" timestamp DEFAULT now() NOT NULL,
