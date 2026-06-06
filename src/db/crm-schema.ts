@@ -90,16 +90,18 @@ export const leadNote = pgTable("lead_note", {
 
 // ─── Lead Activities ──────────────────────────────────────────────────────────
 
-export const activityTypeEnum = pgEnum("activity_type", ["call", "email", "meeting"]);
+export const activityTypeEnum = pgEnum("activity_type", ["call", "whatsapp", "email", "meeting", "site_visit", "follow_up", "quotation_sent"]);
 
 export const leadActivity = pgTable("lead_activity", {
 	id: uuid("id").defaultRandom().primaryKey(),
 	leadId: uuid("lead_id").notNull().references(() => lead.id, { onDelete: "cascade" }),
 	authorId: text("author_id").notNull().references(() => user.id, { onDelete: "cascade" }),
 	type: activityTypeEnum("type").notNull(),
-	subject: text("subject").notNull(),
-	description: text("description"),
-	occurredAt: timestamp("occurred_at").notNull(),
+	date: timestamp("date").notNull(),
+	notes: text("notes").notNull(),
+	result: text("result").notNull(),
+	nextAction: text("next_action"),
+	nextActionDate: timestamp("next_action_date"),
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 	updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });

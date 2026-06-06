@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1780453202846,
-      "tag": "0000_normal_human_robot",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1780711121553,
-      "tag": "0001_cooing_molten_man",
+      "when": 1780711450585,
+      "tag": "0000_mute_firebrand",
       "breakpoints": true
     }
   ]

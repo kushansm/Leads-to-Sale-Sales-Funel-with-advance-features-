@@ -5,11 +5,11 @@ import { LeadNote } from "@/actions/lead-notes";
 import { LeadActivity } from "@/actions/lead-activities";
 import { LeadTask } from "@/actions/lead-tasks";
 import { format } from "date-fns";
-import { PhoneCall, Mail, Calendar, StickyNote, CheckSquare } from "lucide-react";
+import { PhoneCall, Mail, Calendar, StickyNote, CheckSquare, MessageCircle, MapPin, FileText, ArrowRight } from "lucide-react";
 
 type TimelineItem = {
   id: string;
-  type: "note" | "call" | "email" | "meeting" | "task";
+  type: "note" | "call" | "whatsapp" | "email" | "meeting" | "site_visit" | "follow_up" | "quotation_sent" | "task";
   title: string;
   description?: string;
   date: Date;
@@ -35,10 +35,10 @@ export function LeadTimelineTab({
     })),
     ...activities.map((a) => ({
       id: a.id,
-      type: a.type as "call" | "email" | "meeting",
-      title: a.subject,
-      description: a.description || undefined,
-      date: new Date(a.occurredAt),
+      type: a.type as "call" | "whatsapp" | "email" | "meeting" | "site_visit" | "follow_up" | "quotation_sent",
+      title: a.type.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
+      description: `Notes: ${a.notes}\nResult: ${a.result}${a.nextAction ? `\nNext Action: ${a.nextAction}` : ''}`,
+      date: new Date(a.date),
     })),
     ...tasks.map((t) => ({
       id: t.id,
@@ -63,8 +63,12 @@ export function LeadTimelineTab({
   const getIcon = (type: string) => {
     switch (type) {
       case "call": return <PhoneCall className="h-4 w-4" />;
+      case "whatsapp": return <MessageCircle className="h-4 w-4" />;
       case "email": return <Mail className="h-4 w-4" />;
       case "meeting": return <Calendar className="h-4 w-4" />;
+      case "site_visit": return <MapPin className="h-4 w-4" />;
+      case "follow_up": return <ArrowRight className="h-4 w-4" />;
+      case "quotation_sent": return <FileText className="h-4 w-4" />;
       case "note": return <StickyNote className="h-4 w-4" />;
       case "task": return <CheckSquare className="h-4 w-4" />;
       default: return <div className="h-4 w-4 rounded-full bg-muted" />;
