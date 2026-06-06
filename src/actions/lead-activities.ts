@@ -28,6 +28,17 @@ export async function createLeadActivity(organizationId: string, leadId: string,
 }): Promise<ActionResult<LeadActivity>> {
   try {
     const { session } = await requireOrgMember(organizationId);
+    
+    // Start a transaction if needed, but for simplicity we can just do two queries
+    // Update the lead first or last
+    if (data.nextAction || data.nextActionDate) {
+      const { updateLead } = await import("./leads");
+      await updateLead(organizationId, leadId, {
+        nextAction: data.nextAction || null,
+        nextActionDate: data.nextActionDate || null,
+      });
+    }
+
     const [activity] = await db.insert(leadActivity).values({ 
       leadId, 
       authorId: session.user.id, 
@@ -35,6 +46,7 @@ export async function createLeadActivity(organizationId: string, leadId: string,
       nextAction: data.nextAction || null,
       nextActionDate: data.nextActionDate || null,
     }).returning();
+    
     revalidatePath(`/${organizationId}/leads/${leadId}`);
     return { success: true, data: activity };
   } catch (e: any) {

@@ -21,6 +21,8 @@ export type CreateLeadInput = {
   status?: LeadStatus;
   temperature?: LeadTemperature;
   assignedTo?: string;
+  nextAction?: string | null;
+  nextActionDate?: Date | null;
 };
 
 export type UpdateLeadInput = Partial<CreateLeadInput>;

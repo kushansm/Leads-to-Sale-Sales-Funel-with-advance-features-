@@ -53,6 +53,10 @@ export const lead = pgTable("lead", {
 	// Assignment — text FK because user IDs are Better Auth strings
 	assignedTo: text("assigned_to").references(() => user.id, { onDelete: "set null" }),
 
+	// Follow Up
+	nextAction: text("next_action"),
+	nextActionDate: timestamp("next_action_date"),
+
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 	updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });

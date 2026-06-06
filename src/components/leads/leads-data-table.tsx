@@ -38,6 +38,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
 import {
+  AlertCircle,
   ChevronDown,
   ChevronUp,
   ChevronsUpDown,
@@ -104,14 +105,31 @@ export function LeadsDataTable({ leads, organizationId }: Props) {
         header: ({ column }) => (
           <SortableHeader column={column} label="Name" />
         ),
-        cell: ({ row }) => (
-          <div>
-            <p className="font-medium text-sm">{row.original.name}</p>
-            {row.original.company && (
-              <p className="text-xs text-muted-foreground">{row.original.company}</p>
-            )}
-          </div>
-        ),
+        cell: ({ row }) => {
+          const isActive = !["won", "lost", "unqualified"].includes(row.original.status);
+          const needsFollowUp = isActive && !row.original.nextActionDate;
+          
+          return (
+            <div>
+              <div className="flex items-center gap-2">
+                <p className="font-medium text-sm">{row.original.name}</p>
+                {needsFollowUp && (
+                  <div title="No Follow-Up Scheduled">
+                    <AlertCircle className="h-4 w-4 text-destructive" />
+                  </div>
+                )}
+              </div>
+              {row.original.company && (
+                <p className="text-xs text-muted-foreground">{row.original.company}</p>
+              )}
+              {row.original.nextActionDate && isActive && (
+                <p className="text-xs text-blue-600 mt-0.5 font-medium">
+                  Next: {new Date(row.original.nextActionDate).toLocaleDateString()}
+                </p>
+              )}
+            </div>
+          );
+        },
       },
       {
         accessorKey: "email",
