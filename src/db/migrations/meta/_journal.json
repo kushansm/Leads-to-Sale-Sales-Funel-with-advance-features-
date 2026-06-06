@@ -15,6 +15,13 @@
       "when": 1780711764875,
       "tag": "0001_curly_otto_octavius",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1780711968858,
+      "tag": "0002_complex_steel_serpent",
+      "breakpoints": true
     }
   ]
 }

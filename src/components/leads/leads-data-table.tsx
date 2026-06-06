@@ -54,15 +54,16 @@ import { DeleteLeadDialog } from "./delete-lead-dialog";
 import type { Lead } from "@/actions/leads";
 
 const STATUSES = [
-  { value: "all",         label: "All Statuses" },
-  { value: "new",         label: "New" },
-  { value: "contacted",   label: "Contacted" },
-  { value: "qualified",   label: "Qualified" },
-  { value: "proposal",    label: "Proposal" },
-  { value: "negotiation", label: "Negotiation" },
-  { value: "won",         label: "Won" },
-  { value: "lost",        label: "Lost" },
-  { value: "unqualified", label: "Unqualified" },
+  { value: "all",           label: "All Statuses" },
+  { value: "new",           label: "New" },
+  { value: "contacting",    label: "Contacting" },
+  { value: "interested",    label: "Interested" },
+  { value: "evaluating",    label: "Evaluating" },
+  { value: "proposal_sent", label: "Proposal Sent" },
+  { value: "negotiation",   label: "Negotiation" },
+  { value: "won",           label: "Won" },
+  { value: "lost",          label: "Lost" },
+  { value: "dormant",       label: "Dormant" },
 ];
 
 const TEMPERATURES = [

@@ -5,13 +5,14 @@ import { organization, user } from "./schema";
 
 export const leadStatusEnum = pgEnum("lead_status", [
 	"new",
-	"contacted",
-	"qualified",
-	"proposal",
+	"contacting",
+	"interested",
+	"evaluating",
+	"proposal_sent",
 	"negotiation",
 	"won",
 	"lost",
-	"unqualified",
+	"dormant",
 ]);
 
 export const leadTemperatureEnum = pgEnum("lead_temperature", [
