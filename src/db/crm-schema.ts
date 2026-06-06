@@ -1,4 +1,4 @@
-import { pgEnum, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { pgEnum, pgTable, text, timestamp, uuid, integer } from "drizzle-orm/pg-core";
 import { organization, user } from "./schema";
 
 // ─── Enums ───────────────────────────────────────────────────────────────────
@@ -123,6 +123,22 @@ export const leadTask = pgTable("lead_task", {
 	description: text("description"),
 	dueDate: timestamp("due_date"),
 	status: taskStatusEnum("status").default("pending").notNull(),
+	createdAt: timestamp("created_at").defaultNow().notNull(),
+	updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// ─── Opportunities ────────────────────────────────────────────────────────────
+
+export const opportunityStageEnum = pgEnum("opportunity_stage", ["discovery", "proposal", "negotiation", "won", "lost"]);
+
+export const opportunity = pgTable("opportunity", {
+	id: uuid("id").defaultRandom().primaryKey(),
+	leadId: uuid("lead_id").notNull().references(() => lead.id, { onDelete: "cascade" }),
+	name: text("name").notNull(),
+	estimatedValue: integer("estimated_value").notNull().default(0),
+	probability: integer("probability").notNull().default(50),
+	stage: opportunityStageEnum("stage").notNull().default("discovery"),
+	expectedCloseDate: timestamp("expected_close_date"),
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 	updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });

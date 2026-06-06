@@ -22,6 +22,13 @@
       "when": 1780711968858,
       "tag": "0002_complex_steel_serpent",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1780712258037,
+      "tag": "0003_careless_bloodstrike",
+      "breakpoints": true
     }
   ]
 }

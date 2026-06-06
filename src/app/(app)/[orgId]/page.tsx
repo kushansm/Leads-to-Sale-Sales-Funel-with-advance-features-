@@ -24,7 +24,7 @@ export default async function DashboardPage({
 
   leads.forEach(lead => {
     // Only count active leads
-    if (lead.status === "won" || lead.status === "lost" || lead.status === "unqualified") return;
+    if (lead.status === "won" || lead.status === "lost" || lead.status === "dormant") return;
 
     if (lead.nextActionDate) {
       const actionDate = new Date(lead.nextActionDate);
@@ -62,7 +62,7 @@ export default async function DashboardPage({
         </div>
         <div className="rounded-xl border bg-card p-5 shadow-sm">
           <p className="text-sm text-muted-foreground">Total Active Leads</p>
-          <p className="text-2xl font-bold mt-1">{leads.filter(l => !["won", "lost", "unqualified"].includes(l.status)).length}</p>
+          <p className="text-2xl font-bold mt-1">{leads.filter(l => !["won", "lost", "dormant"].includes(l.status)).length}</p>
         </div>
       </div>
     </div>

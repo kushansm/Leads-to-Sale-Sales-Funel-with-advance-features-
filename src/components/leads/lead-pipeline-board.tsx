@@ -110,7 +110,9 @@ export function LeadPipelineBoard({ leads: initialLeads, organizationId }: { lea
                                   <div className="font-medium text-sm leading-tight flex items-center gap-1.5">
                                     {lead.name}
                                     {needsFollowUp && (
-                                      <AlertCircle className="h-3.5 w-3.5 text-destructive" title="No Follow-Up Scheduled" />
+                                      <span title="No Follow-Up Scheduled">
+                                      <AlertCircle className="h-3.5 w-3.5 text-destructive" />
+                                    </span>
                                     )}
                                   </div>
                                   <LeadTemperatureBadge temperature={lead.temperature} />

@@ -107,7 +107,7 @@ export function LeadsDataTable({ leads, organizationId }: Props) {
           <SortableHeader column={column} label="Name" />
         ),
         cell: ({ row }) => {
-          const isActive = !["won", "lost", "unqualified"].includes(row.original.status);
+          const isActive = !["won", "lost", "dormant"].includes(row.original.status);
           const needsFollowUp = isActive && !row.original.nextActionDate;
           
           return (
