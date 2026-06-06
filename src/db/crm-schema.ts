@@ -87,3 +87,35 @@ export const leadNote = pgTable("lead_note", {
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 	updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
+
+// ─── Lead Activities ──────────────────────────────────────────────────────────
+
+export const activityTypeEnum = pgEnum("activity_type", ["call", "email", "meeting"]);
+
+export const leadActivity = pgTable("lead_activity", {
+	id: uuid("id").defaultRandom().primaryKey(),
+	leadId: uuid("lead_id").notNull().references(() => lead.id, { onDelete: "cascade" }),
+	authorId: text("author_id").notNull().references(() => user.id, { onDelete: "cascade" }),
+	type: activityTypeEnum("type").notNull(),
+	subject: text("subject").notNull(),
+	description: text("description"),
+	occurredAt: timestamp("occurred_at").notNull(),
+	createdAt: timestamp("created_at").defaultNow().notNull(),
+	updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// ─── Lead Tasks ───────────────────────────────────────────────────────────────
+
+export const taskStatusEnum = pgEnum("task_status", ["pending", "completed", "cancelled"]);
+
+export const leadTask = pgTable("lead_task", {
+	id: uuid("id").defaultRandom().primaryKey(),
+	leadId: uuid("lead_id").notNull().references(() => lead.id, { onDelete: "cascade" }),
+	assigneeId: text("assignee_id").references(() => user.id, { onDelete: "set null" }),
+	title: text("title").notNull(),
+	description: text("description"),
+	dueDate: timestamp("due_date"),
+	status: taskStatusEnum("status").default("pending").notNull(),
+	createdAt: timestamp("created_at").defaultNow().notNull(),
+	updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
